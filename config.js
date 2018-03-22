@@ -14,7 +14,7 @@ schema.type('RecordsCollection')
   .computed('one', 'Record')
     .param('id', 'String', 'Record id')
     .param('table', 'String', 'The table of the airtable')
-  .computed('items', '[RecordItems]')
+  .computed('items', 'RecordItems')
     .param('table', 'String', 'The table of the airtable')
 
 schema.type('RecordItems')

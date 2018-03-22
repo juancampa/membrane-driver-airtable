@@ -10,8 +10,6 @@ export async function init() {
   })
 }
 
-export const Root = {}
-
 export const RecordsCollection = {
   async one({ args }) {
     const table = escape(args.table)
@@ -20,6 +18,7 @@ export const RecordsCollection = {
   },
   async items({ args }) {
     const table = escape(args.table)
+    console.log('Table ' + table)
     const result = await get(`/${table}`)
     return result
   },
