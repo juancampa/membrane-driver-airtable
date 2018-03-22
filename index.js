@@ -20,8 +20,7 @@ export const RecordsCollection = {
     const table = escape(args.table)
     console.log('Table ' + table)
     const result = await get(`/${table}`)
-    console.log(result)
-    return result
+    return result.records
   },
 }
 
