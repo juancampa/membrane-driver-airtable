@@ -11,14 +11,14 @@ schema.type('Root')
   .computed('records', 'RecordsCollection')
 
 schema.type('RecordsCollection')
-  .computed('one', 'RecordItem')
+  .computed('one', 'Record')
     .param('id', 'String', 'Record id')
     .param('table', 'String', 'The table of the airtable')
-  .computed('items', '[RecordItem]')
+  .computed('items', '[RecordItems]')
     .param('table', 'String', 'The table of the airtable')
 
-schema.type('RecordItem')
-  .computed('self', 'RecordItem*')
+schema.type('RecordItems')
+  .computed('self', 'RecordItems*')
   .field('records', '[Record]')
   .field('offset', 'String')
 
