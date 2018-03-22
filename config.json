@@ -16,13 +16,13 @@
   "types": [
    {
     "name": "Root",
-    "fields": [],
-    "computedFields": [
+    "fields": [
      {
       "name": "records",
       "type": "RecordsCollection"
      }
     ],
+    "computedFields": [],
     "actions": [],
     "events": []
    },

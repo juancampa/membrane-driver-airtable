@@ -10,6 +10,8 @@ export async function init() {
   })
 }
 
+export const Root = {}
+
 export const RecordsCollection = {
   async one({ args }) {
     const table = escape(args.table)
