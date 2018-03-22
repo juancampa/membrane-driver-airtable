@@ -23,14 +23,22 @@ export const RecordsCollection = {
   },
 }
 
-export const RecordItem = {
+export const RecordItems = {
   self({ source }) {
     console.log('source: ' + source)
+    // the table is required. 
+    // Voyager.com is for testing
     return root.records.one({ id: source.id, table:'Voyager.com' })
   },
 }
 
 export const Record = {
+  self({ source }) {
+    console.log('source: ' + source)
+    // the table is required. 
+    // Voyager.com is for testing
+    return root.records.one({ id: source.id, table:'Voyager.com' })
+  },
   fields({ source }){
     return JSON.stringify(source.fields)
   }
