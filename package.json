@@ -2,7 +2,7 @@
   "name": "airtable",
   "version": "1",
   "dependencies": {
-    "axios": "^0.18.0"
+    "airtable": "^0.5.2"
   },
   "license": "MIT"
 }

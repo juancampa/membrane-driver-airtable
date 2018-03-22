@@ -3,7 +3,7 @@
  "dependencies": [],
  "environment": [
   {
-   "name": "API_KEY",
+   "name": "AIRTABLE_API_KEY",
    "description": "The API TOKEN"
   },
   {
@@ -16,18 +16,40 @@
   "types": [
    {
     "name": "Root",
-    "fields": [
+    "fields": [],
+    "computedFields": [
      {
-      "name": "records",
-      "type": "RecordsCollection"
+      "name": "table",
+      "type": "Table",
+      "params": [
+       {
+        "name": "name",
+        "type": "String"
+       }
+      ]
      }
     ],
-    "computedFields": [],
     "actions": [],
     "events": []
    },
    {
-    "name": "RecordsCollection",
+    "name": "Table",
+    "fields": [],
+    "computedFields": [
+     {
+      "name": "name",
+      "type": "String"
+     },
+     {
+      "name": "records",
+      "type": "RecordCollection"
+     }
+    ],
+    "actions": [],
+    "events": []
+   },
+   {
+    "name": "RecordCollection",
     "fields": [],
     "computedFields": [
      {
@@ -36,13 +58,7 @@
       "params": [
        {
         "name": "id",
-        "type": "String",
-        "description": "Record id"
-       },
-       {
-        "name": "table",
-        "type": "String",
-        "description": "The table of the airtable"
+        "type": "String"
        }
       ]
      },
@@ -51,14 +67,7 @@
       "type": "List",
       "ofType": {
        "type": "Record"
-      },
-      "params": [
-       {
-        "name": "table",
-        "type": "String",
-        "description": "The table of the airtable"
-       }
-      ]
+      }
      }
     ],
     "actions": [],

@@ -1,27 +1,26 @@
 const { schema, imports, dependencies, environment, expressions, endpoints } = program;
 
 environment
-  .add('API_KEY', 'The API TOKEN')
+  .add('AIRTABLE_API_KEY', 'The API TOKEN')
   .add('AIRTABLE_ID', 'The Airtable Id')
 
 //expressions
 //  .add('url', '^https://airtable.com/.+$')
 
 schema.type('Root')
-  .field('records', 'RecordsCollection')
+  .computed('table', 'Table')
+    .param('name', 'String')
 
-schema.type('RecordsCollection')
+schema.type('Table')
+  .computed('name', 'String')
+  .computed('records','RecordCollection')
+
+schema.type('RecordCollection')
   .computed('one', 'Record')
-    .param('id', 'String', 'Record id')
-    .param('table', 'String', 'The table of the airtable')
+    .param('id', 'String')
   .computed('items', '[Record]')
-    .param('table', 'String', 'The table of the airtable')
-
-//schema.type('RecordItems')
-  //.computed('self', 'RecordItems*')
-  //.field('records', '[Record]')
-  //.field('offset', 'String')
-
+  // TODO params 
+  
 schema.type('Record')
   .computed('self', 'Record*')
   .field('id', 'String')
