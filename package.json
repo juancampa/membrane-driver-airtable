@@ -1,0 +1,8 @@
+{
+  "name": "airtable",
+  "version": "1",
+  "dependencies": {
+    "axios": "^0.18.0"
+  },
+  "license": "MIT"
+}
