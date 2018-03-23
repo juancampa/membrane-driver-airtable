@@ -1,5 +1,8 @@
-import { base } from './client'
-import { escape } from 'querystring'
+import Airtable from 'airtable'
+
+var base = new Airtable({ apiKey: 'keyYdvrG7aMuxeKMt' }).base(
+  'appQq5qUm7VzgEMP3'
+)
 
 const { root } = program.refs
 
@@ -14,24 +17,19 @@ export const Table = {
     const { name } = self.match(root.table())
     return name
   },
-  records({ self }) {
-    const { name } = self.match(root.table())
-    console.log(name);
-    return root.table({ name: name }).records.items
+  records() {
+    return {}
   },
 }
 
 export const RecordCollection = {
-  one({ args }) {
-    base(args.table).find(args.id, function(err, record) {
-      if (err) {
-        console.error(err)
-        return
-      }
-      console.log(record)
-    })
+  async one({ args, self }) {
+    const { name } = self.match(root.table())
+    const data = await base(name).find(args.id)
+    return data
   },
-  items({ args }) {
+  async items({ args, self }) {
+    const { name } = self.match(root.table())
     const options = {}
     const params = [
       'fields',
@@ -50,47 +48,22 @@ export const RecordCollection = {
       }
     }
 
-    base(args.table)
-      .select(options)
-      .eachPage(
-        function page(records, fetchNextPage) {
-          // This function (`page`) will get called for each page of records.
+    const data = await base(name)
+      .select({ ...options })
+      .eachPage()
 
-          console.log(records)
-
-          // records.forEach(function(record) {
-          //  console.log('Retrieved', record.get('Name'))
-          //})
-
-          // To fetch the next page of records, call `fetchNextPage`.
-          // If there are more records, `page` will get called again.
-          // If there are no more records, `done` will get called.
-          fetchNextPage()
-        },
-        function done(err) {
-          if (err) {
-            console.error(err)
-            return
-          }
-        }
-      )
+    return data
   },
 }
 
-// export const RecordItems = {
-//   self({ source }) {
-//     console.log('source: ' + source)
-//     // the table is required.
-//     // Voyager.com is for testing
-//     return root.records.one({ id: source.id, table:'Voyager.com' })
-//   },
-// }
-
 export const Record = {
   self({ source, self }) {
+    const { id } = source
+    if (id === undefined || id === null) {
+      return null
+    }
     const { name } = self.match(root.table())
-
-    return root.table({ table: name }).records.one({ id: source.id })
+    return root.table({ name: name }).records.one({ id: id })
   },
   fields({ source }) {
     return JSON.stringify(source.fields)
