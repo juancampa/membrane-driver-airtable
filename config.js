@@ -8,7 +8,7 @@ environment
 //  .add('url', '^https://airtable.com/.+$')
 
 schema.type('Root')
-  .field('table', 'Table')
+  .computed('table', 'Table')
     .param('name', 'String')
 
 schema.type('Table')

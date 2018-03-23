@@ -9,7 +9,11 @@ export async function init() {
   })
 }
 
-export const Root = {}
+export const Root = {
+  table() {
+    return {}
+  },
+}
 
 export const Table = {
   name({ self }) {
@@ -24,10 +28,7 @@ export const Table = {
 
 export const RecordsCollection = {
   async one({ args }) {
-    base(args.table).find(args.id, function(
-      err,
-      record
-    ) {
+    base(args.table).find(args.id, function(err, record) {
       if (err) {
         console.error(err)
         return
