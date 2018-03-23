@@ -11,12 +11,12 @@ export const Root = {
 
 export const Table = {
   name({ self }) {
-    const { name } = self.match(root.table)
+    const { name } = self.match(root.table())
     return name
   },
   records({ self }) {
-    const { name } = self.match(root.table)
-    return root.table({ name: name }).records.items
+    const { name } = self.match(root.table())
+    return root.table({ name: name }).records.items()
   },
 }
 
