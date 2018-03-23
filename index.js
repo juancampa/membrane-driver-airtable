@@ -4,9 +4,9 @@ import { escape } from 'querystring'
 const { root } = program.refs
 
 export const Root = {
-  table({ args }) {
-    console.log(args)
-    return args
+  table({ self }) {
+    console.log(self)
+    return self
   },
 }
 
