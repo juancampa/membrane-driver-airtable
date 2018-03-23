@@ -16,6 +16,7 @@ export const Table = {
   },
   records({ self }) {
     const { name } = self.match(root.table())
+    console.log(name);
     return root.table({ name: name }).records.items
   },
 }
