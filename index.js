@@ -16,8 +16,10 @@ export const Root = {
 }
 
 export const Table = {
-  name({ self }) {
+  name({ self , args}) {
     const { name } = self.match(root.table)
+    console.log('Args: ' + args)
+    console.log('self: ' + self)
     return name
   },
   records({ self }) {
