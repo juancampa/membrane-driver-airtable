@@ -10,17 +10,15 @@ export async function init() {
 }
 
 export const Root = {
-  table({ self }) {
-    const { name } = self.match(root.table)
-    return name
+  table({ args }) {
+    console.log(args)
+    return args
   },
 }
 
 export const Table = {
-  name({ self , args}) {
+  name({ self }) {
     const { name } = self.match(root.table)
-    console.log('Args: ' + args)
-    console.log('self: ' + self)
     return name
   },
   records({ self }) {
