@@ -85,16 +85,15 @@ export const RecordCollection = {
 //   },
 // }
 
-// export const Record = {
-//   self({ source }) {
-//     console.log('source: ' + source)
-//     // the table is required.
-//     // Voyager.com is for testing
-//     return root.records.one({ id: source.id, table:'Voyager.com' })
-//   },
-//   fields({ source }){
-//     return JSON.stringify(source.fields)
-//   }
-// }
+export const Record = {
+  self({ source, self }) {
+    const { name } = self.match(root.table())
+
+    return root.table({ table: name }).records.one({ id: source.id })
+  },
+  fields({ source }) {
+    return JSON.stringify(source.fields)
+  },
+}
 
 // //export async function parse({ name, value }) { }
