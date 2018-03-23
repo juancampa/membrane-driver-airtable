@@ -3,12 +3,6 @@ import { escape } from 'querystring'
 
 const { root } = program.refs
 
-export async function init() {
-  await root.set({
-    table: {},
-  })
-}
-
 export const Root = {
   table({ args }) {
     console.log(args)
