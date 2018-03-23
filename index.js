@@ -22,7 +22,7 @@ export const Table = {
 }
 
 export const RecordCollection = {
-  async one({ args }) {
+  one({ args }) {
     base(args.table).find(args.id, function(err, record) {
       if (err) {
         console.error(err)
@@ -31,7 +31,7 @@ export const RecordCollection = {
       console.log(record)
     })
   },
-  async items({ args }) {
+  items({ args }) {
     const options = {}
     const params = [
       'fields',
