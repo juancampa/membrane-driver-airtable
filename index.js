@@ -20,7 +20,7 @@ export const Table = {
   },
 }
 
-export const RecordsCollection = {
+export const RecordCollection = {
   async one({ args }) {
     base(args.table).find(args.id, function(err, record) {
       if (err) {
