@@ -10,8 +10,9 @@ export async function init() {
 }
 
 export const Root = {
-  table() {
-    return {}
+  table({ self }) {
+    const { name } = self.match(root.table)
+    return name
   },
 }
 
