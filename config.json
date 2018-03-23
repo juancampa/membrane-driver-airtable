@@ -67,7 +67,48 @@
       "type": "List",
       "ofType": {
        "type": "Record"
-      }
+      },
+      "params": [
+       {
+        "name": "fields",
+        "type": "List",
+        "ofType": {
+         "type": "String"
+        }
+       },
+       {
+        "name": "filterByFormula",
+        "type": "String"
+       },
+       {
+        "name": "maxRecords",
+        "type": "Int"
+       },
+       {
+        "name": "pageSize",
+        "type": "Int"
+       },
+       {
+        "name": "sort",
+        "type": "String"
+       },
+       {
+        "name": "view",
+        "type": "String"
+       },
+       {
+        "name": "cellFormat",
+        "type": "String"
+       },
+       {
+        "name": "timeZone",
+        "type": "String"
+       },
+       {
+        "name": "userLocale",
+        "type": "String"
+       }
+      ]
      }
     ],
     "actions": [],

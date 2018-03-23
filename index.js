@@ -9,28 +9,80 @@ export async function init() {
   })
 }
 
- export const RecordCollection = {}
- export const Table = {}
- export const Record = {}
+export const Table = {
+  name({ self }) {
+    const { name } = self.match(root.table)
+    return name
+  },
+  records({ self }) {
+    const { name } = self.match(root.table)
+    return root.table({ name: name }).records.items
+  },
+}
 
-// export const RecordsCollection = {
-//   async one({ args }) {
-//     const table = escape(args.table)
-//     const result = await get(`/${table}/${args.id}`)
-//     return result
-//   },
-//   async items({ args }) {
-//     const table = escape(args.table)
-//     console.log('Table ' + table)
-//     const result = await get(`/${table}`)
-//     return result.records
-//   },
-// }
+export const RecordsCollection = {
+  async one({ args }) {
+    base(args.table).find(args.id, function(
+      err,
+      record
+    ) {
+      if (err) {
+        console.error(err)
+        return
+      }
+      console.log(record)
+    })
+  },
+  async items({ args }) {
+    const options = {}
+    const params = [
+      'fields',
+      'filterByFormula',
+      'maxRecords',
+      'pageSize',
+      'sort',
+      'view',
+      'cellFormat',
+      'timeZone',
+      'userLocale',
+    ]
+    for (let param of params) {
+      if (args[param] !== undefined) {
+        options[param] = args[param]
+      }
+    }
+
+    base(args.table)
+      .select(options)
+      .eachPage(
+        function page(records, fetchNextPage) {
+          // This function (`page`) will get called for each page of records.
+
+          console.log(records)
+
+          // records.forEach(function(record) {
+          //  console.log('Retrieved', record.get('Name'))
+          //})
+
+          // To fetch the next page of records, call `fetchNextPage`.
+          // If there are more records, `page` will get called again.
+          // If there are no more records, `done` will get called.
+          fetchNextPage()
+        },
+        function done(err) {
+          if (err) {
+            console.error(err)
+            return
+          }
+        }
+      )
+  },
+}
 
 // export const RecordItems = {
 //   self({ source }) {
 //     console.log('source: ' + source)
-//     // the table is required. 
+//     // the table is required.
 //     // Voyager.com is for testing
 //     return root.records.one({ id: source.id, table:'Voyager.com' })
 //   },
@@ -39,7 +91,7 @@ export async function init() {
 // export const Record = {
 //   self({ source }) {
 //     console.log('source: ' + source)
-//     // the table is required. 
+//     // the table is required.
 //     // Voyager.com is for testing
 //     return root.records.one({ id: source.id, table:'Voyager.com' })
 //   },
