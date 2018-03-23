@@ -8,7 +8,6 @@ export async function init() {
     table: {},
   })
 }
-
 export const Table = {
   name({ self }) {
     const { name } = self.match(root.table)
