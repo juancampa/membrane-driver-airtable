@@ -6,7 +6,6 @@ environment
 
 //expressions
 //  .add('url', '^https://airtable.com/.+$')
-
 schema.type('Root')
   .computed('table', 'Table')
     .param('name', 'String')
