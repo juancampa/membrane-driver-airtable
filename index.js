@@ -16,7 +16,7 @@ export const Table = {
   },
   records({ self }) {
     const { name } = self.match(root.table())
-    return root.table({ name: name }).records.items()
+    return root.table({ name: name }).records.items
   },
 }
 
