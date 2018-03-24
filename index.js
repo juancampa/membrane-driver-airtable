@@ -1,8 +1,4 @@
-import Airtable from 'airtable'
-
-var base = new Airtable({ apiKey: 'keyYdvrG7aMuxeKMt' }).base(
-  'appQq5qUm7VzgEMP3'
-)
+import base from './client'
 
 const { root } = program.refs
 
@@ -50,29 +46,22 @@ export const RecordCollection = {
 
     const data = await base(name)
       .select({ ...options })
-      .eachPage(function page(records, fetchNextPage) {
-        fetchNextPage()
-      })
-      .then(result => {
-        return result
-      })
+      .firstPage()
 
     return data
   },
 }
 
 export const Record = {
-  self({ source, self }) {
+  self({ source, self, parent }) {
     const { id } = source
     if (id === undefined || id === null) {
       return null
     }
-    const { name } = self.match(root.table())
-    return root.table({ name: name }).records.one({ id: id })
+    const { name } = parent.match(root.table())
+    return self || parent.ref.pop().push('one', { id: id })
   },
   fields({ source }) {
     return JSON.stringify(source.fields)
   },
 }
-
-// //export async function parse({ name, value }) { }

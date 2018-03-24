@@ -4,8 +4,6 @@ environment
   .add('AIRTABLE_API_KEY', 'The API TOKEN')
   .add('AIRTABLE_ID', 'The Airtable Id')
 
-//expressions
-//  .add('url', '^https://airtable.com/.+$')
 schema.type('Root')
   .computed('table', 'Table')
     .param('name', 'String')
@@ -32,4 +30,4 @@ schema.type('Record')
   .computed('self', 'Record*')
   .field('id', 'String')
   .computed('fields', 'String')
-  .field('createdTime','String')
+  .computed('createdTime','String')
