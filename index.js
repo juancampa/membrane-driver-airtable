@@ -1,4 +1,4 @@
-import base from './client'
+import { base } from './client'
 
 const { root } = program.refs
 
