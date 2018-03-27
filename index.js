@@ -50,6 +50,9 @@ export const RecordCollection = {
 
     return data
   },
+  createRecord({ args }) {
+    console.log(args)
+  },
 }
 
 export const Record = {

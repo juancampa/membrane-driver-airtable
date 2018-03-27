@@ -111,7 +111,18 @@
       ]
      }
     ],
-    "actions": [],
+    "actions": [
+     {
+      "name": "createRecord",
+      "type": "Int",
+      "params": [
+       {
+        "name": "fields",
+        "type": "String"
+       }
+      ]
+     }
+    ],
     "events": []
    },
    {

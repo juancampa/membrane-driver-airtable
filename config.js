@@ -25,6 +25,8 @@ schema.type('RecordCollection')
       .param('cellFormat','String')
       .param('timeZone','String')
       .param('userLocale','String')
+  .action('createRecord')
+    .param('fields', 'String')
   
 schema.type('Record')
   .computed('self', 'Record*')
