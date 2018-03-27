@@ -120,6 +120,10 @@
      {
       "name": "id",
       "type": "String"
+     },
+     {
+      "name": "createdTime",
+      "type": "String"
      }
     ],
     "computedFields": [
@@ -132,10 +136,6 @@
      },
      {
       "name": "fields",
-      "type": "String"
-     },
-     {
-      "name": "createdTime",
       "type": "String"
      }
     ],
