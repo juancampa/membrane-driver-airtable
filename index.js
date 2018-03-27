@@ -50,8 +50,10 @@ export const RecordCollection = {
 
     return data
   },
-  createRecord({ args }) {
-    console.log(args)
+  async createRecord({ args, self }) {
+    const { name } = self.match(root.table())
+    const fields = JSON.parse(args.fields)
+    await base(name).create(fields)
   },
 }
 
