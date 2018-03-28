@@ -121,6 +121,16 @@
         "type": "String"
        }
       ]
+     },
+     {
+      "name": "deleteRecord",
+      "type": "Int",
+      "params": [
+       {
+        "name": "id",
+        "type": "String"
+       }
+      ]
      }
     ],
     "events": []

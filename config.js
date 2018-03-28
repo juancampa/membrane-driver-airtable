@@ -27,6 +27,8 @@ schema.type('RecordCollection')
       .param('userLocale','String')
   .action('createRecord')
     .param('fields', 'String')
+  .action('deleteRecord')
+    .param('id', 'String')
   
 schema.type('Record')
   .computed('self', 'Record*')

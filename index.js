@@ -43,17 +43,20 @@ export const RecordCollection = {
         options[param] = args[param]
       }
     }
-
     const data = await base(name)
       .select({ ...options })
       .firstPage()
-
     return data
   },
   async createRecord({ args, self }) {
     const { name } = self.match(root.table())
     const fields = JSON.parse(args.fields)
-    await base(name).create(fields)
+    const record = await base(name).create(fields)
+  },
+  async deleteRecord({ args, self }) {
+    const { name } = self.match(root.table())
+    const { id } = args
+    base(name).destroy(id)
   },
 }
 
