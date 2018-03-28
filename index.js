@@ -16,6 +16,22 @@ export const Table = {
   records() {
     return {}
   },
+  async createRecord({ args, self }) {
+    const { name } = self.match(root.table())
+    const fields = JSON.parse(args.fields)
+    await base(name).create(fields)
+  },
+  async deleteRecord({ args, self }) {
+    const { name } = self.match(root.table())
+    const { id } = args
+    await base(name).destroy(id)
+  },
+  async updateRecord({ args, self }) {
+    const { name } = self.match(root.table())
+    const { id } = args
+    const fields = JSON.parse(args.fields)
+    await base(name).create(id, fields)
+  },
 }
 
 export const RecordCollection = {
@@ -47,16 +63,6 @@ export const RecordCollection = {
       .select({ ...options })
       .firstPage()
     return data
-  },
-  async createRecord({ args, self }) {
-    const { name } = self.match(root.table())
-    const fields = JSON.parse(args.fields)
-    const record = await base(name).create(fields)
-  },
-  async deleteRecord({ args, self }) {
-    const { name } = self.match(root.table())
-    const { id } = args
-    base(name).destroy(id)
   },
 }
 

@@ -45,7 +45,42 @@
       "type": "RecordCollection"
      }
     ],
-    "actions": [],
+    "actions": [
+     {
+      "name": "createRecord",
+      "type": "Int",
+      "params": [
+       {
+        "name": "fields",
+        "type": "String"
+       }
+      ]
+     },
+     {
+      "name": "deleteRecord",
+      "type": "Int",
+      "params": [
+       {
+        "name": "id",
+        "type": "String"
+       }
+      ]
+     },
+     {
+      "name": "createRecord",
+      "type": "Int",
+      "params": [
+       {
+        "name": "id",
+        "type": "String"
+       },
+       {
+        "name": "fields",
+        "type": "String"
+       }
+      ]
+     }
+    ],
     "events": []
    },
    {
@@ -111,28 +146,7 @@
       ]
      }
     ],
-    "actions": [
-     {
-      "name": "createRecord",
-      "type": "Int",
-      "params": [
-       {
-        "name": "fields",
-        "type": "String"
-       }
-      ]
-     },
-     {
-      "name": "deleteRecord",
-      "type": "Int",
-      "params": [
-       {
-        "name": "id",
-        "type": "String"
-       }
-      ]
-     }
-    ],
+    "actions": [],
     "events": []
    },
    {
