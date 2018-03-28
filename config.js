@@ -15,7 +15,7 @@ schema.type('Table')
     .param('fields', 'String')
   .action('deleteRecord')
     .param('id', 'String')
-  .action('createRecord')
+  .action('updateRecord')
     .param('id', 'String')
     .param('fields', 'String')
 

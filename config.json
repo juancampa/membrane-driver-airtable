@@ -67,7 +67,7 @@
       ]
      },
      {
-      "name": "createRecord",
+      "name": "updateRecord",
       "type": "Int",
       "params": [
        {
