@@ -30,7 +30,7 @@ export const Table = {
     const { name } = self.match(root.table())
     const { id } = args
     const fields = JSON.parse(args.fields)
-    await base(name).create(id, fields)
+    await base(name).update(id, fields)
   },
 }
 
