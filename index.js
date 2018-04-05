@@ -61,7 +61,10 @@ export const RecordCollection = {
     }
     const data = await base(name)
       .select({ ...options })
-      .eachPage()
+      .eachPage(function page(records, fetchNextPage) {
+        
+      })
+    console.log(data)
     return data
   },
 }
