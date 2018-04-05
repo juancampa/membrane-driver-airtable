@@ -61,7 +61,7 @@ export const RecordCollection = {
     }
     const data = await base(name)
       .select({ ...options })
-      .firstPage()
+      .eachPage()
     return data
   },
 }
