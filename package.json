@@ -1,8 +1,9 @@
 {
-  "name": "airtable",
+  "name": "air",
   "version": "1",
   "dependencies": {
-    "airtable": "^0.5.2"
+    "airtable": "^0.5.2",
+    "request-promise": "^4.2.2"
   },
   "license": "MIT"
 }

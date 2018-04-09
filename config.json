@@ -98,11 +98,8 @@
       ]
      },
      {
-      "name": "items",
-      "type": "List",
-      "ofType": {
-       "type": "Record"
-      },
+      "name": "page",
+      "type": "RecordPage",
       "params": [
        {
         "name": "fields",
@@ -144,6 +141,28 @@
         "type": "String"
        }
       ]
+     }
+    ],
+    "actions": [],
+    "events": []
+   },
+   {
+    "name": "RecordPage",
+    "fields": [],
+    "computedFields": [
+     {
+      "name": "items",
+      "type": "List",
+      "ofType": {
+       "type": "Record"
+      }
+     },
+     {
+      "name": "next",
+      "type": "Ref",
+      "ofType": {
+       "type": "RecordPage"
+      }
      }
     ],
     "actions": [],

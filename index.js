@@ -1,5 +1,11 @@
 import { base } from './client'
 
+import { encode } from 'querystring'
+
+import rp from 'request-promise'
+
+const { AIRTABLE_API_KEY, AIRTABLE_ID } = process.env
+
 const { root } = program.refs
 
 export const Root = {
@@ -40,9 +46,9 @@ export const RecordCollection = {
     const data = await base(name).find(args.id)
     return data
   },
-  async items({ args, self }) {
+  async page({ args, self }) {
     const { name } = self.match(root.table())
-    const options = {}
+    const opts = {}
     const params = [
       'fields',
       'filterByFormula',
@@ -56,16 +62,36 @@ export const RecordCollection = {
     ]
     for (let param of params) {
       if (args[param] !== undefined) {
-        options[param] = args[param]
+        opts[param] = args[param]
       }
     }
-    const data = await base(name)
-      .select({ ...options })
-      .eachPage(function page(records, fetchNextPage) {
-        
-      })
-    console.log(data)
-    return data
+
+    const parameters = encode(opts)
+
+    var options = {
+      uri: `https://api.airtable.com/v0/${AIRTABLE_ID}/${name}?${parameters}`,
+      json: true,
+      headers: {
+        authorization: 'Bearer ' + AIRTABLE_API_KEY,
+      },
+    }
+    const result = await rp(options)
+
+    return result
+  },
+}
+
+export let RecordPage = {
+  next({ self, source }) {
+    if (source.offset === undefined) {
+      return null
+    }
+
+    const args = self.match(root.table().records.page())
+    return root.table().records.page({ ...args, offset: source.offset })
+  },
+  items({ source }) {
+    return source.records
   },
 }
 
