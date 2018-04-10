@@ -32,6 +32,7 @@ schema.type('RecordCollection')
       .param('cellFormat','String')
       .param('timeZone','String')
       .param('userLocale','String')
+      .param('offset','String')
 
 schema.type('RecordPage')
   .computed('items', '[Record]')
