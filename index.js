@@ -47,6 +47,8 @@ export const RecordCollection = {
     return data
   },
   async page({ args, self }) {
+    console.log('args ' + JSON.stringify(args))
+
     const { name } = self.match(root.table())
     const opts = {}
     const params = [
@@ -69,8 +71,6 @@ export const RecordCollection = {
 
     const parameters = encode(opts)
 
-    console.log('parameters ' + parameters)
-
     var options = {
       uri: `https://api.airtable.com/v0/${AIRTABLE_ID}/${name}?${parameters}`,
       json: true,
@@ -79,8 +79,6 @@ export const RecordCollection = {
       },
     }
     const result = await rp(options)
-
-    console.log('result ' + JSON.stringify(result))
 
     return result
   },
@@ -91,8 +89,9 @@ export let RecordPage = {
     if (source.offset === undefined) {
       return null
     }
+    const { name } = self.match(root.table())
     const args = self.match(root.table().records().page())
-    return root.table().records().page({ ...args, offset: source.offset })
+    return root.table({name: name}).records().page({ ...args, offset: source.offset })
   },
   items({ source }) {
     return source.records

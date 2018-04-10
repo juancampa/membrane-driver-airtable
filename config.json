@@ -102,6 +102,10 @@
       "type": "RecordPage",
       "params": [
        {
+        "name": "offset",
+        "type": "String"
+       },
+       {
         "name": "fields",
         "type": "List",
         "ofType": {
@@ -138,10 +142,6 @@
        },
        {
         "name": "userLocale",
-        "type": "String"
-       },
-       {
-        "name": "offset",
         "type": "String"
        }
       ]
