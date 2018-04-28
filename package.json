@@ -1,5 +1,5 @@
 {
-  "name": "air",
+  "name": "airtable",
   "version": "1",
   "dependencies": {
     "airtable": "^0.5.2",
