@@ -104,8 +104,11 @@ export const Record = {
     if (id === undefined || id === null) {
       return null
     }
+    if (self) {
+      return self;
+    }
     const { name } = parent.match(root.table())
-    return self || parent.ref.pop().push('one', { id: id })
+    return parent.ref.pop().push('one', { id: id })
   },
   fields({ source }) {
     return JSON.stringify(source.fields)
