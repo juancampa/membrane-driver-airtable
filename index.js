@@ -43,8 +43,14 @@ export const Table = {
 export const RecordCollection = {
   async one({ args, self }) {
     const { name } = self.match(root.table())
-    const data = await base(name).find(args.id)
-    return data
+    let record;
+    try {
+      record = await base(name).find(args.id)
+    } catch (e) {
+      console.log("Error getting record:", e.message);
+      return
+    }
+    return record
   },
   async page({ args, self }) {
     console.log('args ' + JSON.stringify(args))
@@ -108,7 +114,7 @@ export const Record = {
       return self;
     }
     const { name } = parent.match(root.table())
-    return parent.ref.pop().push('one', { id: id })
+    return parent.ref.pop().pop().push('one', { id: id })
   },
   fields({ source }) {
     return JSON.stringify(source.fields)
